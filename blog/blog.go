@@ -1,8 +1,8 @@
-package post
+package blog
 
 import "database/sql"
 
-type Post struct {
+type Blog struct {
 	Id    int    `json:"id"`
 	Title string `json:"title"`
 }

@@ -2,27 +2,24 @@ package router
 
 import (
 	"context"
-	"database/sql"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
 
 	"github.com/labstack/echo/v4"
-	"github.com/somphongph/go-post-api/post"
+	"github.com/somphongph/go-post-api/blog"
 )
 
 func NewRouter(e *echo.Echo) {
-	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
-	if err != nil {
-		log.Fatal("Connect to database error", err)
-	}
-	defer db.Close()
+	// db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	// if err != nil {
+	// 	log.Fatal("Connect to database error", err)
+	// }
+	// defer db.Close()
 
 	// Expense
-	expenseHandler := post.NewHandler(db)
-	expenseHandler.InitDB()
+	expenseHandler := blog.NewHandler(nil)
 	expense := e.Group("/expenses")
 	{
 		expense.POST("", expenseHandler.CreateExpenseHandler)
