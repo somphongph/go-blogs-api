@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
-	"github.com/somphongph/go-post-api/blog"
+	"github.com/somphongph/go-blogs-api/blog"
 )
 
 func NewRouter(e *echo.Echo) {

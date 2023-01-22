@@ -1,4 +1,4 @@
-module github.com/somphongph/go-post-api
+module github.com/somphongph/go-blogs-api
 
 go 1.18
 
