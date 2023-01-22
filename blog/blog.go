@@ -10,7 +10,3 @@ type Blog struct {
 type Handler struct {
 	db *sql.DB
 }
-
-type Err struct {
-	Message string `json:"message"`
-}

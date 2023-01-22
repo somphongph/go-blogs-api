@@ -20,7 +20,7 @@ func NewRouter(e *echo.Echo) {
 
 	// Expense
 	expenseHandler := blog.NewHandler(nil)
-	expense := e.Group("/expenses")
+	expense := e.Group("/blogs")
 	{
 		expense.POST("", expenseHandler.CreateExpenseHandler)
 	}
