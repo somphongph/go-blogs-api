@@ -18,11 +18,11 @@ func NewRouter(e *echo.Echo) {
 	// }
 	// defer db.Close()
 
-	// Expense
-	expenseHandler := blog.NewHandler(nil)
-	expense := e.Group("/blogs")
+	// Blog
+	b := e.Group("/blogs")
+	bh := blog.NewHandler(nil)
 	{
-		expense.POST("", expenseHandler.CreateExpenseHandler)
+		b.POST("", bh.CreateExpenseHandler)
 	}
 
 	// Graceful Shutdown
