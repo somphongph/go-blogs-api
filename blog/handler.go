@@ -8,6 +8,11 @@ import (
 )
 
 func (h *Handler) CreateHandler(c echo.Context) error {
+	e := Blog{}
+
+	if err := c.Bind(&e); err != nil {
+		return c.JSON(http.StatusBadRequest, response.Err{Message: err.Error()})
+	}
 
 	return c.JSON(http.StatusInternalServerError, response.Err{Message: ""})
 }
