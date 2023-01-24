@@ -13,7 +13,7 @@ func NewHandler(store storer) *Handler {
 	return &Handler{store: store}
 }
 
-func (h *Handler) CreateExpenseHandler(c echo.Context) error {
+func (h *Handler) CreateHandler(c echo.Context) error {
 	b := Blog{}
 	if err := c.Bind(&b); err != nil {
 		return c.JSON(http.StatusBadRequest, response.Err{Message: err.Error()})
@@ -22,7 +22,7 @@ func (h *Handler) CreateExpenseHandler(c echo.Context) error {
 	// Bind object
 	blog := &Blog{
 		Id:        primitive.NewObjectID(),
-		Title:     "",
+		Title:     "title",
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}

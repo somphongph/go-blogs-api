@@ -7,7 +7,7 @@ import (
 	"github.com/somphongph/go-blogs-api/response"
 )
 
-func (h *Handler) CreateHandler(c echo.Context) error {
+func (h *Handler) CreateHandlerXXXX(c echo.Context) error {
 	e := Blog{}
 
 	if err := c.Bind(&e); err != nil {

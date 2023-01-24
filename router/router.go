@@ -22,7 +22,7 @@ func NewRouter(e *echo.Echo) {
 	b := e.Group("/blogs")
 	bh := blog.NewHandler(blog.NewMongoDBStore())
 	{
-		b.POST("", bh.CreateExpenseHandler)
+		b.POST("", bh.CreateHandler)
 	}
 
 	// Graceful Shutdown
