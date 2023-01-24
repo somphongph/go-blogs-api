@@ -12,12 +12,6 @@ import (
 )
 
 func NewRouter(e *echo.Echo) {
-	// db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
-	// if err != nil {
-	// 	log.Fatal("Connect to database error", err)
-	// }
-	// defer db.Close()
-
 	// Blog
 	b := e.Group("/blogs")
 	bh := blog.NewHandler(blog.NewMongoDBStore())
@@ -27,7 +21,7 @@ func NewRouter(e *echo.Echo) {
 
 	// Graceful Shutdown
 	go func() {
-		if err := e.Start(os.Getenv("PORT")); err != nil && err != http.ErrServerClosed { // Start server
+		if err := e.Start(":" + os.Getenv("PORT")); err != nil && err != http.ErrServerClosed { // Start server
 			e.Logger.Fatal("shutting down the server")
 		}
 	}()

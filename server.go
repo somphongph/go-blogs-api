@@ -1,12 +1,19 @@
 package main
 
 import (
+	"log"
+
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/somphongph/go-blogs-api/router"
 )
 
 func main() {
+	if err := godotenv.Load(".env"); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	// create a new echo instance
 	e := echo.New()
 
