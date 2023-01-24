@@ -20,7 +20,7 @@ func NewRouter(e *echo.Echo) {
 
 	// Blog
 	b := e.Group("/blogs")
-	bh := blog.NewHandler(nil)
+	bh := blog.NewHandler(blog.NewMongoDBStore())
 	{
 		b.POST("", bh.CreateExpenseHandler)
 	}

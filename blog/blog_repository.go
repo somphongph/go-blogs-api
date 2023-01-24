@@ -19,13 +19,13 @@ func NewMongoDBStore() *MongoDBStore {
 	if err != nil {
 		panic("failed to connect database")
 	}
-	collection := client.Database(os.Getenv("MONGO_DB_NAME")).Collection("books")
+	collection := client.Database(os.Getenv("MONGO_DB_NAME")).Collection("blogs")
 
 	return &MongoDBStore{Collection: collection}
 }
 
-func (s *MongoDBStore) GetById(bookId string) (Blog, error) {
-	id, _ := primitive.ObjectIDFromHex(bookId)
+func (s *MongoDBStore) GetById(blogId string) (Blog, error) {
+	id, _ := primitive.ObjectIDFromHex(blogId)
 
 	var (
 		ctx    = context.Background()
@@ -39,7 +39,7 @@ func (s *MongoDBStore) GetById(bookId string) (Blog, error) {
 	return result, err
 }
 
-func (s *MongoDBStore) GetAll() ([]Blog, error) {
+func (s *MongoDBStore) GetList() ([]Blog, error) {
 
 	var (
 		ctx    = context.Background()
@@ -67,27 +67,27 @@ func (s *MongoDBStore) GetAll() ([]Blog, error) {
 	return result, err
 }
 
-func (s *MongoDBStore) Add(book *Blog) error {
+func (s *MongoDBStore) Add(blog *Blog) error {
 	var ctx = context.Background()
 
 	// Insert
-	_, err := s.Collection.InsertOne(ctx, book)
+	_, err := s.Collection.InsertOne(ctx, blog)
 	return err
 }
 
-func (s *MongoDBStore) Update(book *Blog) error {
+func (s *MongoDBStore) Update(blog *Blog) error {
 	update := bson.M{
-		"$set": book,
+		"$set": blog,
 	}
 	var ctx = context.Background()
 
 	// Update
-	_, err := s.Collection.UpdateByID(ctx, book.Id, update)
+	_, err := s.Collection.UpdateByID(ctx, blog.Id, update)
 	return err
 }
 
-func (s *MongoDBStore) Delete(bookId string) error {
-	id, _ := primitive.ObjectIDFromHex(bookId)
+func (s *MongoDBStore) Delete(blogId string) error {
+	id, _ := primitive.ObjectIDFromHex(blogId)
 
 	var (
 		ctx    = context.Background()
