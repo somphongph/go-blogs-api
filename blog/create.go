@@ -9,20 +9,26 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+type createRequest struct {
+	Title   string `json:"title"`
+	Content string `json:"content"`
+}
+
 func NewHandler(store storer) *Handler {
 	return &Handler{store: store}
 }
 
 func (h *Handler) CreateHandler(c echo.Context) error {
-	b := Blog{}
-	if err := c.Bind(&b); err != nil {
+	cr := createRequest{}
+	if err := c.Bind(&cr); err != nil {
 		return c.JSON(http.StatusBadRequest, response.Err{Message: err.Error()})
 	}
 
 	// Bind object
 	blog := &Blog{
 		Id:        primitive.NewObjectID(),
-		Title:     "title",
+		Title:     cr.Title,
+		Content:   cr.Content,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
