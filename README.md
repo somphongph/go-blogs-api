@@ -1,1 +1,1 @@
-# go-posts-api
+# go-blogs-api

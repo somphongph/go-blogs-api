@@ -34,5 +34,5 @@ func (h *Handler) CreateHandler(c echo.Context) error {
 		return err
 	}
 
-	return c.JSON(http.StatusCreated, b)
+	return c.JSON(http.StatusCreated, blog)
 }
