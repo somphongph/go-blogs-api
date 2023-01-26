@@ -7,12 +7,7 @@ import (
 	"github.com/somphongph/go-blogs-api/response"
 )
 
-func (h *Handler) CreateHandlerXXXX(c echo.Context) error {
-	e := Blog{}
-
-	if err := c.Bind(&e); err != nil {
-		return c.JSON(http.StatusBadRequest, response.Err{Message: err.Error()})
-	}
+func (h *Handler) CreateHandler(c echo.Context) error {
 
 	return c.JSON(http.StatusInternalServerError, response.Err{Message: ""})
 }
