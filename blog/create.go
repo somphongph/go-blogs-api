@@ -18,11 +18,7 @@ type createResponse struct {
 	Id string `json:"id"`
 }
 
-func NewHandler(store storer) *Handler {
-	return &Handler{store: store}
-}
-
-func (h *Handler) CreateHandlera(c echo.Context) error {
+func (h *Handler) CreateHandler(c echo.Context) error {
 	req := createRequest{}
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, response.Err{Message: err.Error()})
@@ -43,6 +39,7 @@ func (h *Handler) CreateHandlera(c echo.Context) error {
 
 		return err
 	}
+
 	res := createResponse{
 		Id: blog.Id.Hex(),
 	}

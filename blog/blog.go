@@ -25,3 +25,7 @@ type storer interface {
 	Update(*Blog) error
 	Delete(string) error
 }
+
+func New(store storer) *Handler {
+	return &Handler{store: store}
+}
