@@ -16,7 +16,7 @@ func NewRouter(e *echo.Echo) {
 	b := e.Group("/blogs")
 	hBlog := blog.New(blog.NewMongoDBStore())
 	{
-		b.GET(":id", hBlog.GetById)
+		b.GET("/:id", hBlog.GetById)
 		b.POST("", hBlog.CreateHandler)
 	}
 

@@ -1,6 +1,7 @@
 package blog
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -16,6 +17,7 @@ func (h *Handler) GetById(c echo.Context) error {
 
 	// Get data
 	blog, err := h.store.GetById(id)
+	fmt.Print(blog)
 	if err != nil {
 		return c.JSON(http.StatusNotFound, "")
 	}
